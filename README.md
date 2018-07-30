@@ -5,6 +5,7 @@
 
 Класс OrderRepository изначально был реализован для работы с заказами, хранящимися в MySQL. Но однажды нам потребовалось реализовать работу с данными о заказах, например, через API стороннего веб-сервиса. Какие изменения нам надо будет внести?
 
+```c
 class Order
 {
     int orderId;
@@ -17,11 +18,13 @@ class OrderRepository
     public void Update(Order order) { ... }
     public void Delete(Order order) { ... }
 }
+```
 
 2. Принцип разделения интерфейсов.
 
 Товары в магазине могут иметь промокод, скидку, у них есть цена, состояние и т.д. Если этот товар – одежда, то для нее устанавливается, из какого она материала, ее цвет и размер. Какие изменения нужно внести в код, чтобы описать произвольные товары (книги, автомобили и т.п.), соблюдая принципы SOLID?
 
+```c
 interface IItem
 {
     void SetDiscount( double discount ); 
@@ -40,4 +43,4 @@ class Clothes : IItem
     public void SetPromocode(string promocode)    {    }
     public void SetSize(Size size)    {    }
 }
-
+```
